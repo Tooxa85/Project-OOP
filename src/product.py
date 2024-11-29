@@ -10,6 +10,14 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
+
     @property
     def price(self):
         return self.__price
@@ -28,3 +36,53 @@ class Product:
         price = product_data.get("price")
         quantity = product_data.get("quantity")
         return cls(name, description, price, quantity)
+
+
+class Smartphone(Product):
+    """Класс товаров категории 'Смартфоны'"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
+
+
+class LawnGrass(Product):
+    """Класс товаров категории 'Трава газонная'"""
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is LawnGrass:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
