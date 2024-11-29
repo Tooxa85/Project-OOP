@@ -13,3 +13,7 @@ def test_add_product(class_category, class_new_product):
     assert len(class_category.products) == 0
     class_category.add_product(class_new_product)
     assert len(class_category.products) == 1
+
+
+def test_str_category(class_category):
+    assert str(class_category) == "Смартфоны, количество продуктов: 0 шт."
