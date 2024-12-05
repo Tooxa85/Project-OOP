@@ -1,3 +1,6 @@
+from src.category import Category
+
+
 def test_class_category(class_category):
     assert class_category.name == "Смартфоны"
     assert (
@@ -17,3 +20,17 @@ def test_add_product(class_category, class_new_product):
 
 def test_str_category(class_category):
     assert str(class_category) == "Смартфоны, количество продуктов: 0 шт."
+
+
+def test_category_middle_price(class_category):
+    assert class_category.middle_price() == 0
+
+
+def test_category_middle_price_empty():
+    cat = Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться просмотром, "
+        "станет вашим другом и помощником",
+        products=[],
+    )
+    assert cat.middle_price() == 0
