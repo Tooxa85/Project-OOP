@@ -1,4 +1,4 @@
-from src.product import Product
+from src.product import LawnGrass, Product, Smartphone
 
 
 def test_class_product(class_product):
@@ -63,3 +63,10 @@ def test_smartphone_init(grass1):
 
 def test_lawn_grass_add(grass1, grass2):
     assert grass1 + grass2 == 16750
+
+
+def test_mixin_product(capsys):
+    Product("apples", "Fresh apples", 7.5, 15)
+
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product('apples', 'Fresh apples', 7.5, 15)"
